@@ -50,6 +50,8 @@ Por lo tanto se ha ideado la siguiente Infraestructura
 
 ![alt-text](/img/structure.png)
 
+PD: logo de docker en negro se refiere al servicio de docker, y los host con el logo de docker claro se refiere a contenedores (los cuales llamamos hosts).
+
 Donde el **docker1**, Sera el servidor principal donde se intalará las siguientes tecnologias
 
 - Servidor web Apache.
