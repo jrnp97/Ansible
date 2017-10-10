@@ -50,9 +50,15 @@ Gracias al modulo mysql_user y mysql_db los cuales nos proporcionan el promt de 
 Lo equivalente realizado en el playbook en el promt de MySQL es lo siguiente:
 
 ```
+Eliminando usuarios aninimos
+> DELETE FROM mysql.user where User=”;
 Creando usuario mediaW
-> 
+> CREATE USER 'mediaW'@'localhost' IDENTIFIED BY 'pwd';
 
 Dando permisos a login remoto del usuario mediaW
 > GRANT ALL ON *.* to mediaW@'host_ip or % (for all)' IDENTIFIED BY 'pwd';
+
+Creando base de datos MediaWiki
+> CREATE DATABASE MediaWiki ENCODINg utf8;
+
 ```
