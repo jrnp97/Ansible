@@ -8,6 +8,8 @@
     - php7.0-json
     - php7.0-mbstring
     - php7.0-intl
+    - php7.0-xml
+    - php7.0-mysql
     - libapache2-mod-php7.0
 
 - name: Instalando Apache

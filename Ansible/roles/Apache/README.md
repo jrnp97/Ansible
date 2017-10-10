@@ -8,6 +8,8 @@ En este rol se buscara configurar un host instalando PHP y los modulos usado por
 - mbstring (Instalación Manual)
 - intl (Instalación Manual)
 - OpenSSL (Instalado por defecto)
+- php7.0-xml (Instalacion manual)
+- php7.0-mysql (Instalacion manual, ya que usaremos mysql si se utilizara otro motor de base de datos seria distinto)
 
 Por requerimiento de Apache se debe instalar el modulo libapache2-mod-php7 para que este pueda ejecutar codigo PHP.
 
