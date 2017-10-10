@@ -41,7 +41,7 @@ $ sudo service mysql-server start
 
 Y aqui termina la instalación de MySQL.
 
-## Configuando usuario y base de datos para MediaWiki ##
+### Configuando usuario y base de datos para MediaWiki ###
 
 Como paso de seguridad se eliminan todos los usuarios anonimos de mysql, creamos el usuario **mediaW** y la base de datos **MediaWiki**.
 
@@ -59,6 +59,5 @@ Dando permisos a login remoto del usuario mediaW
 > GRANT ALL ON *.* to mediaW@'host_ip or % (for all)' IDENTIFIED BY 'pwd';
 
 Creando base de datos MediaWiki
-> CREATE DATABASE MediaWiki ENCODINg utf8;
-
+> CREATE DATABASE MediaWiki ENCODING utf8;
 ```
