@@ -15,7 +15,7 @@ Ademas de los roles, creamos el archivo [hosts](hosts) en el cual se configura e
 - **ansible_port=** Se especifica el puerto donde se realizara la conexion ssh
 - **ansible_ssh_private_key_file=** Se especifica la ruta donde se encuentra la llave privada, si se requiere
 
-**Ejecutando rol Apache**
+## Ejecutando rol Apache ##
 
 Para la ejecución del rol apache se utiliza el siguiente comandos
 
@@ -34,3 +34,26 @@ Al realizar lo anterior deberias tener una salida parecida a la siguiente
 Y al ingresar por nuestro navegador a http://localhost/ debemos apreciar lo siguiente
 
 ![alt-text](/img/Home_apache.png)
+
+## Ejecutando rol MySQL ##
+
+Para la ejecución del rol MySQL se utiliza el siguiente comando
+```
+ansible-playbook -i {{ ruta del directorio host }} {{ruta del playbook que ejecuta el rol}}
+
+En nuestro caso si estuviera en el directorio Ansible/ el comando seria equivalente ha
+
+$ ansible-playbook -i hosts Mysql.yml
+```
+
+Al ingresar lo anterior se deberia tener una salida parecida a la siguiente
+
+![alt-text](/img/MySQL_role.png)
+
+Si contamos con mysql-client con el siguiente comando
+
+`$ mysql -h localhost -u mediaW -p --protocol=tcp`
+
+Podriamos establecer conexion con Mysql, apreciariamos lo siguiente
+
+![alt-text](/img/Mysql_connect.png)

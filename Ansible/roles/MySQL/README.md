@@ -1,38 +1,58 @@
-Role Name
-=========
+# Rol MySQL #
 
-A brief description of the role goes here.
+En este rol se buscara configurar un host instalando MySQL y el modulo de python para la ejecución del modulo mysql_user de ansible el cual es *python-mysqldb*.
 
-Requirements
-------------
+## Instalación de MySQL ##
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Para la instalación de mysql primero configuramos el entorno especificando la contraseña que se pregunta al momento de instalar el paquete correspondiente, para ello utilizamos el modulo *debconf*.
 
-Role Variables
---------------
+Al utilizar el modulo debconf los comando equivalentes en el sistema serian los siguientes
+```
+Preparando el sistema para que no sea interactivo
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+$ export DEBIAN_FRONTEND="noninteractive"
 
-Dependencies
-------------
+Especificando contraseña root para MySQL
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+$ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password {{ contraseña }}"
 
-Example Playbook
-----------------
+Confirmando contraseña root de MySQL
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+$ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again {{ contraseña }}"
+```
+despues instalamos el paquete **mysql-server** y el modulo para la ejecucion del modulo *mysql_user* de ansible, desde el manejador de respositorio apt, seleccionamos el directorio por defecto de mysql e copiamos nuestra configuracion de mysql y  se inicia el servicio.
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+La instalación simularia los siguientes comandos
 
-License
--------
+```
+Instalación
+$ sudo apt install mysql-server python-mysqldb
 
-BSD
+Directorio por defecto
+usermod -d /var/lib/mysql/ mysql
 
-Author Information
-------------------
+Copiando configuración (Realmente se utiliza scp para enviar archivos por ssh)
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+cp -R {{remote host}} /etc/mysql/mysql.conf.d/mysqld.cnf  (no tan cierto :D)
+
+Inicio del servicio
+$ sudo service mysql-server start
+```
+
+Y aqui termina la instalación de MySQL.
+
+## Configuando usuario y base de datos para MediaWiki ##
+
+Como paso de seguridad se eliminan todos los usuarios anonimos de mysql, creamos el usuario **mediaW** y la base de datos **MediaWiki**.
+
+Gracias al modulo mysql_user y mysql_db los cuales nos proporcionan el promt de MySQL.
+
+Lo equivalente realizado en el playbook en el promt de MySQL es lo siguiente:
+
+```
+Creando usuario mediaW
+> 
+
+Dando permisos a login remoto del usuario mediaW
+> GRANT ALL ON *.* to mediaW@'host_ip or % (for all)' IDENTIFIED BY 'pwd';
+```
