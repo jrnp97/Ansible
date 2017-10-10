@@ -43,7 +43,7 @@ $ (sudo) docker run -d -P --name wiki_main -p 2221:22 -p 80:80 wiki_host
 
 Nombre del contenedor mysql = wiki_mysql
 
-$ (sudo) docker run -d -P --name server_mysql -p 2222:22 -p 3306:3306 wiki_host
+$ (sudo) docker run -d -P --name wiki_db -p 2222:22 -p 3306:3306 wiki_host
 
 ```
 
