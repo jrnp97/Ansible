@@ -1,7 +1,7 @@
 # Configuracion de MediaWiki con Ansible #
 
-MediaWiki es un software libre bajo la licensia ![GNU](https://en.wikipedia.org/wiki/GNU_General_Public_License),
-para mas información clic ![aquí](https://www.mediawiki.org/wiki/MediaWiki)
+MediaWiki es un software libre bajo la licensia [GNU](https://en.wikipedia.org/wiki/GNU_General_Public_License),
+para mas información clic [aquí](https://www.mediawiki.org/wiki/MediaWiki)
 
 ## Dependencias ##
 - Servidor web
@@ -22,12 +22,12 @@ Se implementará esta ultima en la configuración.
 
 Las extenciones requeridad en PHP son:
 
-- ![Perl Compatible Regular Expressions](https://secure.php.net/pcre)
-- ![Sessions](https://secure.php.net/sessions)
-- ![Standar PHP Library](https://secure.php.net/spl)
-- ![JSON](https://secure.php.net/json)
-- ![mbstring](https://secure.php.net/mbstring)
-- ![PHP OpenSSL extension](https://secure.php.net/openssl)
+- [Perl Compatible Regular Expressions](https://secure.php.net/pcre)
+- [Sessions](https://secure.php.net/sessions)
+- [Standar PHP Library](https://secure.php.net/spl)
+- [JSON](https://secure.php.net/json)
+- [mbstring](https://secure.php.net/mbstring)
+- [PHP OpenSSL extension](https://secure.php.net/openssl)
 
 ### Servidor de base de datos ###
 
