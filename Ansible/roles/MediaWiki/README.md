@@ -1,38 +1,33 @@
-Role Name
-=========
+# Rol MediaWiki #
 
-A brief description of the role goes here.
+En este rol se buscara configurar un host con el servicio apache al cual le instalará MediaWiki y las dependencias de terceros, como lo son
 
-Requirements
-------------
+- **git** : para control de versiones. *INSTALADO*
+- **ImageMagik o Biblioteca GB** : para miniaturización de imagenes.
+- **APCu, XCache o WinCache** : para manejar cache de objetos.
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+## Instalación de MediaWiki ##
 
-Role Variables
---------------
+Para la instalación de MediaWiki primero debemos descargar la version estable de este que se puede encontrar en la pagina oficial [aquí](https://www.mediawiki.org/wiki/MediaWiki).
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Entonces el enlace se anexa a la variable **url_stable** en el archivo **main.yml** del directorio **vars/** de nuestro rol.
 
-Dependencies
-------------
+Extraer el archivo **tar.gz** y el contenido de este anexarlo al directorio web de apache, que comunmente es **/var/www/html/**.
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Por ultimo se anexa la configuración de MediaWiki en esta se especifican, los datos de conexion de MySQL.
 
-Example Playbook
-----------------
+Las variables que se configuran en el archivo son las siguientes
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+- **mysql_media_usr:** Usuario para conexion con MySQL.
+- **mysql_media_pwd:** Contraseña de usuario para conexion con MySQL.
+- **mysql_media_db:** Nombre de la base de datos en MySQL.
+- **mysql_db_prefix:** Prefix de las tablas que se crearán.
+- **docker_ip_host:** Dirección ipv4 del adaptador docker.
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+Este ultimo dato se podria encontrar si se observa la dirección del adaptador de docker que se crea por defecto en el host.
 
-License
--------
+Ejemplo ip docker
 
-BSD
+![alt-text](/img/Docker_ip.png)
 
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+por lo general es **172.17.0.1** o se encuentra en el ranto **172.0.0.0 - 172.255.255.255**.
