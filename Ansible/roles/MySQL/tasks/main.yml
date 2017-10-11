@@ -38,6 +38,9 @@
   command: service mysql start
   register: start
 
+- name: Habilitando servicio Mysql al inicio del host
+  service: name=mysql state=started enabled=yes
+
 - name: Respuesta de inicio
   debug: var=start
 

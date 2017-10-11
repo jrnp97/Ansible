@@ -41,7 +41,7 @@ Nombre del contenedor main = server_main
 
 $ (sudo) docker run -d -P --name wiki_main -p 2221:22 -p 80:80 wiki_host
 
-Nombre del contenedor mysql = wiki_mysql
+Nombre del contenedor mysql = wiki_db
 
 $ (sudo) docker run -d -P --name wiki_db -p 2222:22 -p 3306:3306 wiki_host
 
@@ -52,11 +52,11 @@ Los alias seran los nombres de los contenedores
  Alias |
  --- |
  wiki_main |
- wiki_mysql |
+ wiki_db |
 
 Entonces ahora registramos los aleas con el siguiente comando
 
-` $ echo "127.0.0.1 wiki_main wiki_mysql" | sudo tee -a /etc/hosts `
+` $ echo "127.0.0.1 wiki_main wiki_db" | sudo tee -a /etc/hosts `
 
 Y con esto contamos con los contenedores creados y con posibilidad de identificación.
 
@@ -95,7 +95,7 @@ $ ssh root@{{ nombre contenedor }} -p {{ puerto de ssh }} -i {{ llave privada }}
 
 $ ssh root@wiki_main -p 2221 -i /path/to/Ansible_wiki/Keys/key
 
-$ ssh root@wiki_mysql -p 2222 -i /path/to/Ansible_wiki/Keys/key
+$ ssh root@wiki_db -p 2222 -i /path/to/Ansible_wiki/Keys/key
 ```
 
 y podriamos apreciar un mensaje como el siguiente (en cada primer intento de conexion)
@@ -118,7 +118,7 @@ En nuestro caso seria lo siguiente
 
 $ ssh -o StrictHostKeyChecking=no root@wiki_main -p 2221 -i /path/to/Ansible_wiki/Keys/key hostname
 
-$ ssh -o StrictHostKeyChecking=no root@wiki_mysql -p 2222 -i /path/to/Ansible_wiki/Keys/key hostname
+$ ssh -o StrictHostKeyChecking=no root@wiki_db -p 2222 -i /path/to/Ansible_wiki/Keys/key hostname
 ```
 
 y podriamos apreciar un mensaje como el siguiente
