@@ -28,9 +28,9 @@ echo "--- Registrando contenedores en known_hosts de ssh ---"
 
 echo "Registrando wiki_main"
 
-ssh -o StrictHostKeyChecking=no root@wiki_main -p 2221 -i /path/to/Ansible_wiki/Keys/key hostname
+ssh -o StrictHostKeyChecking=no root@wiki_main -p 2221 -i ../Keys/key hostname
 
 echo "Registrando wiki_db"
-ssh -o StrictHostKeyChecking=no root@wiki_db -p 2222 -i /path/to/Ansible_wiki/Keys/key hostname
+ssh -o StrictHostKeyChecking=no root@wiki_db -p 2222 -i ../Keys/key hostname
 
 echo "*** Contenedores listo ***"
