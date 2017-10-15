@@ -1,6 +1,6 @@
 # Configuracion de MediaWiki con Ansible #
 
-Para la implementación ver [aquí](https://github.com/jrnp97/Ansible_wiki#implementacion).
+Para la implementación ver [aquí](https://github.com/jrnp97/Ansible_wiki#implementaci%C3%B3n).
 
 MediaWiki es un software libre bajo la licensia [GNU](https://en.wikipedia.org/wiki/GNU_General_Public_License),
 para mas información clic [aquí](https://www.mediawiki.org/wiki/MediaWiki)
