@@ -121,3 +121,5 @@ Y si quieren pueden acceder con el usuario creado, una captura de mi acceso
 
 
 y listo MediaWiki ha sido instalado.
+
+**NOTA: Aún hay problemas de seguridad en la aplicación que se deben arreglar post-instalación, se seguira actualizando :D**

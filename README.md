@@ -1,5 +1,7 @@
 # Configuracion de MediaWiki con Ansible #
 
+Para la implementación ver [aquí](https://github.com/jrnp97/Ansible_wiki#implementacion).
+
 MediaWiki es un software libre bajo la licensia [GNU](https://en.wikipedia.org/wiki/GNU_General_Public_License),
 para mas información clic [aquí](https://www.mediawiki.org/wiki/MediaWiki)
 
@@ -64,3 +66,15 @@ Cabe resaltar los siguientes caracteristicas comunes de ambos host.
 
 - **OS principal:** Ubuntu 16.04.
 - **Servicios intalados y configurados:** SSH.
+
+## Implementación ##
+
+Los pasos realizados aun no estan al 100% para un entorno de producción, pero se cumple el objetivo de instalar MediaWiki, cuestiones de seguridad en esta aun no han sido implmenetadas.
+
+Para implementar la configuración local se accede a la carpeta **Docker** por medio de la terminal y se ejecuta el script **build_dockers.sh**
+
+Este script realizará todos los pasos explicados [aquí](https://github.com/jrnp97/Ansible_wiki/tree/master/Docker#configuracion-de-host-docker).
+
+Despues se debe realizar la ejecución de los playbooks para ello pueden ingresar al directorio **Ansible** y ejecutar el script **configure_container.sh** para la ejecución de los roles, para terminar de configurar MediaWiki se deben seguir los pasos descritos [aquí](https://github.com/jrnp97/Ansible_wiki/tree/master/Ansible#termiando-configuranci%C3%B3n-mediawiki).
+
+Los pasos que realiza el script se han de explicar [aquí](https://github.com/jrnp97/Ansible_wiki/tree/master/Ansible#configuraci%C3%B3n-del-entorno) con mas detalle.
