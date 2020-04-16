@@ -1,0 +1,13 @@
+---
+- name: Reconfigurando permisos de directorio de moodle
+  hosts: web
+  remote_user: root
+  task:
+   - name: Change permissions to moodle dir
+     file:
+       path: /var/www/html/moodle
+       mode: 0755
+   - name: Change permissions to moodle data dir
+     file:
+       path: /var/www/moodledata
+       mode: 0755

@@ -1,0 +1,6 @@
+---
+- name: Configuring server02 with mysql
+  hosts: sql
+  remote_user: root
+  roles:
+   - sqlserver

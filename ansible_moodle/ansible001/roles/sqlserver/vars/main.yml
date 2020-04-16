@@ -1,0 +1,7 @@
+---
+# vars file for sqlserver
+mysql_root_usr: root
+mysql_moodle_usr: moodle
+mysql_root_password: PwdProof2017-
+mysql_sock_path: /var/run/mysqld/mysqld.sock
+mysql_moodle_pwd: Moodledb2017-

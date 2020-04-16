@@ -1,0 +1,5 @@
+---
+port_default: 8000
+moodle_apache_dir: /var/www/html/moodle
+moodle_source_dir: /opt/moodle
+moodle_data_dir: /var/www/moodledata

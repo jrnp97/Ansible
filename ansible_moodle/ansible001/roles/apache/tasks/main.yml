@@ -1,0 +1,64 @@
+---
+- name: Install PHP with Modules and git
+  apt:
+   name: "{{ item }}"
+   state: present
+   update_cache: yes
+  with_items:
+    - php7.0
+    - php7.0-xmlrpc
+    - php7.0-zip
+    - php7.0-simplexml
+    - php7.0-intl
+    - php7.0-mysqli
+    - php7.0-curl
+    - php7.0-gd
+    - php7.0-mbstring
+    - php7.0-soap
+    - libapache2-mod-php7.0
+    - git
+
+- name: Install Apache and dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gcc
+    - make
+    - perl
+    - apache2
+
+- name: Start Apache Service
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+
+- name: Downloading Moodle v-32 from Github
+  git:
+    repo: 'git://git.moodle.org/moodle.git'
+    dest: "{{ moodle_source_dir }}"
+    version: MOODLE_32_STABLE
+    clone: yes
+
+- name: Configuring moodledata DIR
+  file:
+    path: "{{ moodle_data_dir }}"
+    owner: www-data
+    recurse: yes
+    state: directory
+    mode: 0777
+
+- name: Add moodle dir installation to apache2
+  command: cp -R -u /opt/moodle /var/www/html/moodle
+
+- name: Change permissions to moodle dir
+  file:
+    path: "{{ moodle_apache_dir }}"
+    mode: 0777
+
+#Display output from command
+- name: Display apache2 dir
+  command: ls /opt
+  register: ls
+- debug: var=ls.stdout_lines
