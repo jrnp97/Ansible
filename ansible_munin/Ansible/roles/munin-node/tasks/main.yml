@@ -1,0 +1,44 @@
+---
+- name: Install or update perl v5.0
+  apt:
+    name: perl
+    state: present
+    only_upgrade: yes
+    update_cache: yes
+
+- name: Install CPANM
+  apt:
+    name: cpanminus
+    state: present
+
+- name: Install pre-requisites modules for munin-node
+  cpanm:
+    name: "{{ item }}"
+  with_items:
+    - Net::Server
+    - Net::Server::Fork
+    - Net::CIDR
+    - Time::HiRes
+
+- name: Install munin-node
+  apt:
+    name: munin-node
+    state: present
+    update_cache: yes
+
+- name: Started and enabled munin-node service
+  service:
+    name: munin-node
+    state: started
+    enabled: yes
+
+- name: Configure munin-node plug-and-play
+  shell: munin-node-configure --shell --families=contrib,auto | sh -x
+  register: CONFIG
+
+- name: change config file
+  template:
+    src: munin-node.conf.j2
+    dest: /etc/munin/munin-node.conf
+  notify:
+    - restart munin-node

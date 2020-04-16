@@ -1,0 +1,7 @@
+---
+- name: Configuring munin-master container
+  hosts: master
+  user: root
+  become: true
+  roles:
+    - munin-master

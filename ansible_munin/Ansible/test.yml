@@ -1,0 +1,12 @@
+---
+- name: Test connection
+  hosts: all
+  user: ansible
+  tasks:
+    - name: run
+      shell: uname -a
+      register: CMD
+
+    - name: OUTPUT
+      debug:
+        msg: "{{ CMD.stdout }}"

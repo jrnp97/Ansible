@@ -1,0 +1,7 @@
+---
+- name: Install apache and put index.html
+  hosts: all
+  user: root
+  become: true
+  roles:
+    - apache

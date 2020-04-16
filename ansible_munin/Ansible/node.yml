@@ -1,0 +1,7 @@
+---
+- name: Install munin-node and configure
+  hosts: server
+  user: root
+  become: true
+  roles:
+    - munin-node

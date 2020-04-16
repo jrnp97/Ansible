@@ -1,0 +1,9 @@
+---
+- name: Configurando apache
+  import_playbook: web.yml
+
+- name: Configurando munin-nodo
+  import_playbook: node.yml
+
+- name: Configurando munin-master
+  import_playbook: master.yml

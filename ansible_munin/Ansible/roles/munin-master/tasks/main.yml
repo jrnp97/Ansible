@@ -1,0 +1,74 @@
+---
+#- name: Install or update perl v5.0
+#  apt:
+#    name: perl
+#    state: present
+#    only_upgrade: yes
+#    update_cache: yes
+
+#- name: Install RRDTool dependencies
+#  apt:
+#    name: "{{ item }}"
+#    state: present
+#  with_items:
+#    - "{{ RRD_depen }}"
+#    - libssl-dev
+#    - cpanminus #for use cpanm
+
+#- name: Install perl modules primaries
+#  cpanm:
+#      name: "{{ item }}"
+#      installdeps: yes
+#  with_items:
+#      - "{{ modules }}"
+
+- name: Install munin master
+  apt:
+    name: munin
+    state: present
+
+- name: Add munin.conf file
+  template:
+    src: munin.conf.j2
+    dest: /etc/munin/munin.conf
+
+- name: Add conf files
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - {'src':'apache.conf', 'dest':'/etc/munin/apache.conf'}
+    - {'src':'apache24.conf', 'dest':'/etc/munin/apache24.conf'}
+
+- name: Make symboliglink
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  with_items:
+    - {'src':'/etc/munin/apache.conf', 'dest':'/etc/apache2/conf-available/munin.conf'}
+    - {'src':'/etc/apache2/conf-available/munin.conf', 'dest':'/etc/apache2/conf-enabled/munin.conf'}
+
+- name: Create munin directory to content
+  file:
+    path: /var/www/munin/
+    state: directory
+    owner: munin
+    group: munin
+
+- name: Start and enabled munin service
+  service:
+    name: munin
+    state: started
+    enabled: yes
+
+- name: Generate files
+  shell: cron run munin-cron
+
+- name: Verify content munin directory
+  shell: ls -lah /var/www/munin/
+  register: verify
+
+- name: OUTPUT
+  debug:
+    msg: "{{ verify }}"

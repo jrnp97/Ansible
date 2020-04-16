@@ -1,0 +1,22 @@
+---
+- name: Install sudo
+  apt:
+    name: sudo
+    state: present
+
+- name: Ensure ansible user exists
+  user:
+    name: ansible
+    state: present
+    comment: Ansible
+
+- name: Ensure ansible user accepts the SSH key
+  authorized_key:
+   user: ansible
+   key: "{{ lookup('file', 'key.pub') }}"
+   state: present
+
+- name: Add sudoers file
+  copy:
+    src: sudoers
+    dest: /etc/sudoers

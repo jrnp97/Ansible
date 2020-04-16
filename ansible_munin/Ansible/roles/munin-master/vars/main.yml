@@ -1,0 +1,47 @@
+---
+RRD_depen:
+    - pkg-config
+    - gettext
+    - libc6 #remplace glib
+    - libxml2-dev
+    - libpango1.0-dev #remplace pango
+    - libcairo2-dev #remplace cairo
+
+modules:
+    - Module::Build
+    - Alien::RRDtool
+    - DBD::SQLite
+    - DBI
+    - IO::Socket::INET6
+    - HTML::Template::Pro
+    - Net::SSLeay
+    - CGI::Cookie
+    - LWP::UserAgent
+    - List::Util
+    - List::MoreUtils
+    - Log::Dispatch
+    - Net::SNMP
+    - Net::Server::Daemonize
+    - Net::Server::Fork
+    - Parallel::ForkManager
+    - Params::Validate
+    - URI
+    - XML::Dumper
+
+
+#dependencies:
+#    - IO::Scalar
+#    - Test::Class
+#    - Test::Differences
+#    - Test::MockModule
+#    - Test::MockObject
+#    - Test::Deep
+#    - Test::LongString
+#    - Test::Perl::Critic
+#    - File::Slurp
+#    - File::ReadBackwards
+#    - XML::Parser
+#    - DBD::Pg
+#    - Net::DNS
+#    - Net::IP
+#    - XML::LibXML
